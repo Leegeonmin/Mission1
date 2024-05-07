@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
-<%@page import="javacode.bookmark_repo"%>
+<%@page import="repository.bookmark_repo"%>
 <%@page import="javacode.bookmark_dao"%>
 <%
 	int idParam = Integer.parseInt(request.getParameter("id"));
@@ -50,7 +50,7 @@ pageEncoding="UTF-8"%>
     <span>&nbsp;|&nbsp;</span>
     <a href = "bookmark.jsp"> 북마크 그룹 관리 </a>
     <p></p>
-    <form action="update_bookmarkgroup_servlet" method="get">
+    <form action="update_bookmark_servlet" method="get">
         <table border = "1">
 	    	<tr align="center" bgcolor="white">
 		    	<th>북마크이름</th>

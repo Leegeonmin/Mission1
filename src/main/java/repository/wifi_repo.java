@@ -1,4 +1,4 @@
-package javacode;
+package repository;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,6 +9,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import javacode.wifi_dao;
+import javacode.wifi_dto;
  
 public class wifi_repo {
     String driver = "org.mariadb.jdbc.Driver";

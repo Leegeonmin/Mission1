@@ -1,4 +1,4 @@
-package javacode;
+package repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+
+import javacode.history_dao;
 
 public class history_repo {
 	 String driver = "org.mariadb.jdbc.Driver";

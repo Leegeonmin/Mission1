@@ -43,7 +43,7 @@ pageEncoding="UTF-8"%>
     <span>&nbsp;|&nbsp;</span>
     <a href = "bookmark.jsp"> 북마크 그룹 관리 </a>
     <p></p>
-    <form action="insert_bookmarkgroup_servlet" method="get">
+    <form action="insert_bookmark_servlet" method="get">
         <table border = "1">
 	    	<tr align="center" bgcolor="white">
 		    	<th>북마크이름</th>

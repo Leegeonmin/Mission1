@@ -1,6 +1,7 @@
-package javacode;
+package javacode.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,17 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import repository.bookmark_repo;
+
 /**
- * Servlet implementation class delete_history_servlet
+ * Servlet implementation class update_bookmarkgroup_servlet
  */
-@WebServlet("/delete_history_servlet")
-public class delete_history_servlet extends HttpServlet {
+@WebServlet("/update_bookmark_servlet")
+public class update_bookmark_servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public delete_history_servlet() {
+    public update_bookmark_servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,11 +31,22 @@ public class delete_history_servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		history_repo history_repository = new history_repo();
+		String name = request.getParameter("name");
+		int seq = Integer.parseInt(request.getParameter("seq"));
 		int id = Integer.parseInt(request.getParameter("id"));
-		history_repository.deleteHistoryInfo(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("history.jsp");
+		
+		bookmark_repo bookmark_repository = new bookmark_repo();
+		bookmark_repository.update(name, seq, id);
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer = response.getWriter();
+		writer.println("<script>alert('북마크 그룹 정보를 수정 하였습니다'); location.href='bookmark.jsp';</script>"); 
+		writer.close();
+		
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("bookmark.jsp");
         dispatcher.forward(request, response);
 	}
 

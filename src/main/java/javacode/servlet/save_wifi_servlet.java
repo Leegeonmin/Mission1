@@ -1,4 +1,4 @@
-package javacode;
+package javacode.servlet;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import javacode.wifi_dto;
+import repository.wifi_repo;
 
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;

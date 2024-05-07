@@ -1,10 +1,10 @@
 package javacode;
 
-public class DistanceWifi {
+public class wifi_with_distance {
         wifi_dao wifi;
         double distance;
         
-        public DistanceWifi(wifi_dao wifi, double distance) {
+        public wifi_with_distance(wifi_dao wifi, double distance) {
             this.wifi = wifi;
             this.distance = distance;
         }

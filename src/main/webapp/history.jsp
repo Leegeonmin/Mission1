@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="javacode.history_dao"%>
-<%@page import="javacode.history_repo"%>
+<%@page import="repository.history_repo"%>
 <%@page	import="java.util.Collections"%>
 <% 
 	history_repo history_repository = new history_repo();

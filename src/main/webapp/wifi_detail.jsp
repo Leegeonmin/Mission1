@@ -1,18 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@page import="javacode.wifi_dao"%>
-<%@page import="javacode.wifi_service"%>
-<%@page import="javacode.DistanceWifi"%>
-<%@page import="javacode.bookmark_repo" %>
+<%@page import="repository.wifi_repo"%>
+<%@page import="javacode.wifi_with_distance"%>
+<%@page import="repository.bookmark_repo" %>
 <%@page import="javacode.bookmark_dao" %>
 <%@page import="java.util.ArrayList"%>
+<%@page import="javacode.Util"%>
 <%
-	int idParam = Integer.parseInt(request.getParameter("id"));
+int idParam = Integer.parseInt(request.getParameter("id"));
 	double latX = Double.parseDouble(request.getParameter("latX"));
 	double lonY = Double.parseDouble(request.getParameter("lonY"));
-
-	wifi_service wifi_service = new wifi_service();
-	DistanceWifi wifi_info = wifi_service.getWifiDetail(idParam,latX, lonY);
+	wifi_repo wifi_repo = new wifi_repo();
+	wifi_dao wifi = wifi_repo.findById(idParam);
+	double distance = Util.calculateDistance(latX, lonY, wifi.getLatX(), wifi.getLonY());
+	wifi_with_distance wifi_info = new wifi_with_distance(wifi, distance);
 	
 	bookmark_repo bookmark_repo = new bookmark_repo();
 	ArrayList<bookmark_dao> selectBoxList = bookmark_repo.findBookmarkInfoAll();
@@ -63,7 +65,7 @@ pageEncoding="UTF-8"%>
     <p></p>
     
 	    
-	<form action="match_bookmark_servlet" method="get">
+	<form action="insert_matched_bookmark_servlet" method="get">
 	    <select id="bookmark_id" name="bookmark_id">
 	        <option value="">북마크 그룹 이름 선택</option>
 	        <% for (bookmark_dao bookmark : selectBoxList) { %>

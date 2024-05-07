@@ -1,6 +1,7 @@
-package javacode;
+package javacode.servlet;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,7 +13,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javacode.DistanceWifi;
+import javacode.wifi_with_distance;
+import javacode.wifi_dao;
+import repository.history_repo;
+import repository.wifi_repo;
 /**
  * Servlet implementation class get_wifi_sevlet
  */
@@ -29,22 +33,22 @@ public class get_wifi_sevlet extends HttpServlet {
     }
 
     // 거리상 가까운 wifi 20개 찾는 메서드
-    static ArrayList<DistanceWifi> get20WifiInfo(ArrayList<wifi_dao> dao, double latX, double lonY){
-    	ArrayList<DistanceWifi> nearestWifi = new ArrayList<>();
+    static ArrayList<wifi_with_distance> get20WifiInfo(ArrayList<wifi_dao> dao, double latX, double lonY){
+    	ArrayList<wifi_with_distance> nearestWifi = new ArrayList<>();
         // 모든 dao 객체와의 거리를 계산하여 저장할 리스트
-        List<DistanceWifi> distances = new ArrayList<>();
+        List<wifi_with_distance> distances = new ArrayList<>();
         
         // 모든 dao 객체와의 거리를 계산하여 distances 리스트에 저장
         for (wifi_dao wifi : dao) {
             double distance = calculateDistance(latX, lonY, wifi.getLatX(), wifi.getLonY());
-            distances.add(new DistanceWifi(wifi, distance));
+            distances.add(new wifi_with_distance(wifi, distance));
         }
         
         // 거리에 따라 distances 리스트를 정렬
-        Collections.sort(distances, new Comparator<DistanceWifi>() {
+        Collections.sort(distances, new Comparator<wifi_with_distance>() {
             @Override
-            public int compare(DistanceWifi wifi1, DistanceWifi wifi2) {
-                return Double.compare(wifi1.distance, wifi2.distance);
+            public int compare(wifi_with_distance wifi1, wifi_with_distance wifi2) {
+                return Double.compare(wifi1.getDistance(), wifi2.getDistance());
             }
         });
         
@@ -79,7 +83,7 @@ public class get_wifi_sevlet extends HttpServlet {
 		wifi_repo wifi_repository =  new wifi_repo();
 		ArrayList<wifi_dao> dao_list = wifi_repository.findWifiInfoAll();
 
-        ArrayList<DistanceWifi> result = get20WifiInfo(dao_list, latX, lonY);
+        ArrayList<wifi_with_distance> result = get20WifiInfo(dao_list, latX, lonY);
         
         request.setAttribute("wifiList", result);
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");

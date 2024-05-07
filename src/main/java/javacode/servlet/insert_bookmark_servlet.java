@@ -1,4 +1,4 @@
-package javacode;
+package javacode.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,17 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import repository.bookmark_repo;
+
 /**
  * Servlet implementation class insert_bookmarkgroup_servlet
  */
-@WebServlet("/insert_bookmarkgroup_servlet")
-public class insert_bookmarkgroup_servlet extends HttpServlet {
+@WebServlet("/insert_bookmark_servlet")
+public class insert_bookmark_servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public insert_bookmarkgroup_servlet() {
+    public insert_bookmark_servlet() {
         super();
         // TODO Auto-generated constructor stub
     }

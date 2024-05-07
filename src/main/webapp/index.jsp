@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="javacode.DistanceWifi"%>
+<%@page import="javacode.wifi_with_distance"%>
 <%
-ArrayList<DistanceWifi> wifiList = request.getAttribute("wifiList") != null ? (ArrayList<DistanceWifi>)request.getAttribute("wifiList"): new ArrayList<DistanceWifi>();
-
+ArrayList<wifi_with_distance> wifiList = request.getAttribute("wifiList") != null ? (ArrayList<wifi_with_distance>)request.getAttribute("wifiList"): new ArrayList<wifi_with_distance>();
 %>
 <%
 java.text.DecimalFormat df = new java.text.DecimalFormat("#.####");
@@ -85,15 +84,22 @@ java.text.DecimalFormat df = new java.text.DecimalFormat("#.####");
 	    	</tr>
 	    </thead>
 	    		<tbody>
-	    	<%if(wifiList.size() == 0) {%>
+	    	<%
+	    	
+	    	if(wifiList.size() == 0)
+	    	%>
 
 			    <tr>
 			        <td colspan="17" style="text-align: center; font-weight: bold;">위치 정보를 입력한 후에 조회해 주세요</td>
 			    </tr>
 
-	    	<% }%>
-			<%for(DistanceWifi ele:wifiList) {
-				 String formattedDistance = df.format(ele.getDistance());
+	    	<%
+	    	
+	    	%>
+			<%
+			
+			for(wifi_with_distance ele:wifiList) {
+					 String formattedDistance = df.format(ele.getDistance());
 			%>
 				<tr>
 					<td><%= formattedDistance%></td>
