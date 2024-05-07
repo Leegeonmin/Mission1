@@ -18,23 +18,19 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * Servlet implementation class file
  */
-@WebServlet("/saveApiServlet")
-public class saveApiServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+@WebServlet("/save_wifi_servlet")
+public class save_wifi_servlet extends HttpServlet {
+
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public saveApiServlet() {
+    public save_wifi_servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,7 +44,7 @@ public class saveApiServlet extends HttpServlet {
 		int end = 1000;
 		
 		//api통해 받은 데이터를 db에 저장하고 페이지에 개수를 보여줄 result 배열
-        List<TbPublicWifiInfo> result = new ArrayList<TbPublicWifiInfo>();
+		ArrayList<wifi_dto> result = new ArrayList<wifi_dto>();
 		while(true) {
 			
 	        String apiUrl = "http://openapi.seoul.go.kr:8088/764b527a626c6b6d34327056436d6e/json/TbPublicWifiInfo/" + String.valueOf(start) + "/" + String.valueOf(end);
@@ -80,7 +76,7 @@ public class saveApiServlet extends HttpServlet {
 	            List<Map<String, String>> rowList = (List<Map<String, String>>) map.get("TbPublicWifiInfo").get("row");
 
 	            for (Map<String, String> row : rowList) {
-	                TbPublicWifiInfo wifiInfo = new TbPublicWifiInfo();
+	                wifi_dto wifiInfo = new wifi_dto();
 	                wifiInfo.setxSwifiMgrNo(row.get("X_SWIFI_MGR_NO"));
 	                wifiInfo.setxSwifiWrdocf(row.get("X_SWIFI_WRDOFC"));
 	                wifiInfo.setxSwifiMainNm(row.get("X_SWIFI_MAIN_NM"));
@@ -100,6 +96,8 @@ public class saveApiServlet extends HttpServlet {
 
 	                result.add(wifiInfo);
 	            }
+	            
+	            
 	            start += 1000;
 	            end += 1000;
 	        } else {
@@ -107,10 +105,15 @@ public class saveApiServlet extends HttpServlet {
 	            break;
 	        }
 		}
+		// ####
+		// DB 저장 로직 
+		wifi_repo wifi_repository =  new wifi_repo();
+		wifi_repository.insertWifiInfo(result);
+		// ####
             int size = result.size();         
             // JSP로 데이터 전달
             request.setAttribute("count", size);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("apiSaveResult.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("api_save_result.jsp");
             dispatcher.forward(request, response);
 		}
 	

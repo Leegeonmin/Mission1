@@ -1,22 +1,22 @@
 package javacode;
 
-public class TbPublicWifiInfo {
-    private String xSwifiMgrNo;
-	private String xSwifiWrdocf;
-    private String xSwifiMainNm;
-    private String xSwifiAdres1;
-    private String xSwifiAdres2;
-    private String xSwifiInstlFloor;
-    private String xSwifiInstlTy;
-    private String xSwifiInstlMby;
-    private String xSwifiSvcSe;
-    private String xSwifiCmcwr;
-    private String xSwifiCnstcYear;
-    private String xSwifiInoutDoor;
-    private String xSwifiRemars3;
-    private String lat;
-    private String lnt;
-    private String workDttm;
+public class wifi_dto {
+    private String xSwifiMgrNo; // 관리번호
+	private String xSwifiWrdocf; // 자치구
+    private String xSwifiMainNm; // 와이파이명
+    private String xSwifiAdres1; // 도로명주소
+    private String xSwifiAdres2; // 상세주소
+    private String xSwifiInstlFloor; // 설치위치(층)
+    private String xSwifiInstlTy; // 설치유형
+    private String xSwifiInstlMby; // 설치기관
+    private String xSwifiSvcSe; // 서비스 구분
+    private String xSwifiCmcwr; // 망종류
+    private String xSwifiCnstcYear; // 설치년도
+    private String xSwifiInoutDoor; // 실내외구분
+    private String xSwifiRemars3; // wifi접속환경
+    private String lat; // Y좌표
+    private String lnt; // X좌표
+    private String workDttm; // 작업일자
     public String getxSwifiMgrNo() {
 		return xSwifiMgrNo;
 	}
