@@ -40,11 +40,11 @@ public class update_bookmarkgroup_servlet extends HttpServlet {
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
-		writer.println("<script>alert('북마크 그룹 정보를 수정 하였습니다'); location.href='bookmark_group.jsp';</script>"); 
+		writer.println("<script>alert('북마크 그룹 정보를 수정 하였습니다'); location.href='bookmark.jsp';</script>"); 
 		writer.close();
 		
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("bookmark_group.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("bookmark.jsp");
         dispatcher.forward(request, response);
 	}
 

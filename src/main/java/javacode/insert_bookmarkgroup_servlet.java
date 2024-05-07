@@ -31,7 +31,7 @@ public class insert_bookmarkgroup_servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("name");
 		int seq= Integer.parseInt(request.getParameter("seq"));
-		
+		System.out.println("뭘봐");
 		bookmark_repo bookmark_repository = new bookmark_repo();
 		bookmark_repository.insertBookmarkInfo(name, seq);
 		response.setCharacterEncoding("UTF-8");
@@ -39,11 +39,11 @@ public class insert_bookmarkgroup_servlet extends HttpServlet {
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
-		writer.println("<script>alert('북마크 그룹 정보를 추가 하였습니다'); location.href='bookmark_group.jsp';</script>"); 
+		writer.println("<script>alert('북마크 그룹 정보를 추가 하였습니다'); location.href='bookmark.jsp';</script>"); 
 		writer.close();
 		
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("bookmark_group.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("bookmark.jsp");
         dispatcher.forward(request, response);
 	}
 

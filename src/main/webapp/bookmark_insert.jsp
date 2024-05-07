@@ -1,17 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
-<%@page import="javacode.bookmark_repo"%>
-<%@page import="javacode.bookmark_dao"%>
-<%
-	int idParam = Integer.parseInt(request.getParameter("id"));
-	bookmark_repo repo = new bookmark_repo();
-	bookmark_dao dao = repo.findById(idParam);
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>북마크 삭제</title>
+<title>북마크 추가</title>
   <style>
     /* 테이블 헤더의 스타일 */
     th {
@@ -38,7 +31,7 @@ pageEncoding="UTF-8"%>
 </style>
 </head>
 <body>
-    <h1> 북마크 삭제</h1>
+    <h1> 북마크 추가</h1>
     
     <a href = "index.jsp"> 홈 </a>
     <span>&nbsp;|&nbsp;</span>
@@ -46,32 +39,26 @@ pageEncoding="UTF-8"%>
     <span>&nbsp;|&nbsp;</span>
     <a href = "save_wifi_servlet"> Open API 와이파이 정보 가져오기 </a>
 	<span>&nbsp;|&nbsp;</span>
-    <a href = "bookmark.jsp"> 북마크 보기 </a>
+    <a href = "matched_bookmark.jsp"> 북마크 보기 </a>
     <span>&nbsp;|&nbsp;</span>
-    <a href = "bookmark_group.jsp"> 북마크 그룹 관리 </a>
+    <a href = "bookmark.jsp"> 북마크 그룹 관리 </a>
     <p></p>
-    <form action="delete_bookmarkgroup_servlet" method="get">
+    <form action="insert_bookmarkgroup_servlet" method="get">
         <table border = "1">
 	    	<tr align="center" bgcolor="white">
 		    	<th>북마크이름</th>
 		    	<td>
-		    		<span> <%= dao.getName() %></span>
+		    		<input type="text" name="name" id="name" style="display: inline-block;">
 		    	</td>
 	    	</tr>
 	    	<tr align="center" bgcolor="white">
 		    	<th>순서</th>
 		    	<td>
-		    		<span> <%= dao.getSeq() %></span>
+		    		<input type="text" name="seq" id="seq" style="display: inline-block;">
 		    	</td>
 	    	</tr>
 	    	<tr align="center" bgcolor="white">
-
-		    	<td style = "text-align: center;" colspan="2">
-		    	<a href = "bookmark_group.jsp"> 돌아가기 </a>
-		    	<span> &nbsp;|&nbsp;</span>
-		    	<button type = "submit"> 삭제 </button>
-		    	<input type="hidden" name="id" value="<%= dao.getId() %>">
-		    	</td>
+		    	<td style = "text-align: center;" colspan="2"><button type = "submit"> 추가 </button></td>
 	    	</tr>
     	</table>
     </form>	

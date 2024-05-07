@@ -11,7 +11,7 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>북마크 수정</title>
+<title>북마크 삭제</title>
   <style>
     /* 테이블 헤더의 스타일 */
     th {
@@ -26,19 +26,20 @@ pageEncoding="UTF-8"%>
     }
     th, td {
         padding: 8px; /* 셀 내부 여백 설정 */
-        text-align: center; /* 셀 텍스트 정렬 왼쪽으로 설정 */
+        text-align: left; /* 셀 텍스트 정렬 왼쪽으로 설정 */
         border: 1px solid black; /* 테두리 설정 */
     }
     tr:nth-child(odd) {
   		background : lightgrey;
 	}
 	tr td{
-		text-align: left;
+
+		text-align: center;
 	}
 </style>
 </head>
 <body>
-    <h1> 북마크 수정</h1>
+    <h1> 북마크 삭제</h1>
     
     <a href = "index.jsp"> 홈 </a>
     <span>&nbsp;|&nbsp;</span>
@@ -46,29 +47,29 @@ pageEncoding="UTF-8"%>
     <span>&nbsp;|&nbsp;</span>
     <a href = "save_wifi_servlet"> Open API 와이파이 정보 가져오기 </a>
 	<span>&nbsp;|&nbsp;</span>
-    <a href = "bookmark.jsp"> 북마크 보기 </a>
+    <a href = "matched_bookmark.jsp"> 북마크 보기 </a>
     <span>&nbsp;|&nbsp;</span>
-    <a href = "bookmark_group.jsp"> 북마크 그룹 관리 </a>
+    <a href = "bookmark.jsp"> 북마크 그룹 관리 </a>
     <p></p>
-    <form action="update_bookmarkgroup_servlet" method="get">
+    <form action="delete_bookmarkgroup_servlet" method="get">
         <table border = "1">
-	    	<tr align="center" bgcolor="white">
-		    	<th>북마크이름</th>
-		    	<td>
-		    		<input type="text" value = "<%=dao.getName() %>" placeholder = "<%=dao.getName() %>" name="name" id="name" style="display: inline-block;">
-		    	</td>
-	    	</tr>
-	    	<tr align="center" bgcolor="white">
-		    	<th>순서</th>
-		    	<td>
-		    		<input type="text" value = "<%=dao.getSeq() %>" placeholder = "<%=dao.getSeq() %>" name="seq" id="seq" style="display: inline-block;">
-		    	</td>
-	    	</tr>
-	    	<tr align="center" bgcolor="white">
+			<tr>
+				<td> 북마크 이름</td>
+				<td><%= dao.getName() %></td>
+			</tr>
+			<tr>
+				<td> 와이파이명 </td>
+				<td><%= dao.getWifi_name() %></td>
+			</tr>
+			<tr>
+				<td> 등록일자</td>
+				<td><%= dao.getReg_date() %></td>
+			</tr>
+				    	<tr align="center" bgcolor="white">
 		    	<td style = "text-align: center;" colspan="2">
-		    	<a href = "bookmark.jsp"> 돌아가기 </a>
+		    	<a href = "matched_bookmark.jsp"> 돌아가기 </a>
 		    	<span> &nbsp;|&nbsp;</span>
-		    	<button type = "submit"> 수정 </button>
+		    	<button type = "submit"> 삭제 </button>
 		    	<input type="hidden" name="id" value="<%= dao.getId() %>">
 		    	</td>
 	    	</tr>

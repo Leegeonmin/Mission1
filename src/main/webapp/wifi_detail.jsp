@@ -57,9 +57,9 @@ pageEncoding="UTF-8"%>
     <span>&nbsp;|&nbsp;</span>
     <a href = "save_wifi_servlet"> Open API 와이파이 정보 가져오기 </a>
 	<span>&nbsp;|&nbsp;</span>
-    <a href = "bookmark.jsp"> 북마크 보기 </a>
+    <a href = "matched_bookmark.jsp"> 북마크 보기 </a>
     <span>&nbsp;|&nbsp;</span>
-    <a href = "bookmark_group.jsp"> 북마크 그룹 관리 </a>
+    <a href = "bookmark.jsp"> 북마크 그룹 관리 </a>
     <p></p>
     
 	    
@@ -69,7 +69,7 @@ pageEncoding="UTF-8"%>
 	        <% for (bookmark_dao bookmark : selectBoxList) { %>
 	            <option value="<%= bookmark.getId() %>"><%= bookmark.getName() %></option>
 	        <% } %>
-	    </select>
+	    </select> 
 	    <input type="hidden" name="wifi_id" value="<%= idParam %>">
 	    <input type="hidden" name="wifi_name" value="<%= wifi_info.getWifi().getName() %>">
 	    <button type="submit">북마크 추가하기</button>

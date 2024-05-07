@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@page import="javacode.bookmark_repo"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="javacode.bookmark_dao"%>
-<%
-	int idParam = Integer.parseInt(request.getParameter("id"));
+<% 
 	bookmark_repo repo = new bookmark_repo();
-	bookmark_dao dao = repo.findById(idParam);
+	ArrayList<bookmark_dao> list = repo.findMatchedBookmarkInfoAll();
+	
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>북마크 삭제</title>
+<title>북마크 보기</title>
   <style>
     /* 테이블 헤더의 스타일 */
     th {
@@ -39,7 +40,7 @@ pageEncoding="UTF-8"%>
 </style>
 </head>
 <body>
-    <h1> 북마크 삭제</h1>
+    <h1> 북마크 보기</h1>
     
     <a href = "index.jsp"> 홈 </a>
     <span>&nbsp;|&nbsp;</span>
@@ -47,33 +48,34 @@ pageEncoding="UTF-8"%>
     <span>&nbsp;|&nbsp;</span>
     <a href = "save_wifi_servlet"> Open API 와이파이 정보 가져오기 </a>
 	<span>&nbsp;|&nbsp;</span>
-    <a href = "bookmark.jsp"> 북마크 보기 </a>
+    <a href = "matched_bookmark.jsp"> 북마크 보기 </a>
     <span>&nbsp;|&nbsp;</span>
-    <a href = "bookmark_group.jsp"> 북마크 그룹 관리 </a>
+    <a href = "bookmark.jsp"> 북마크 그룹 관리 </a>
     <p></p>
-    <form action="delete_bookmarkgroup_servlet" method="get">
+    
         <table border = "1">
-			<tr>
-				<td> 북마크 이름</td>
-				<td><%= dao.getName() %></td>
-			</tr>
-			<tr>
-				<td> 와이파이명 </td>
-				<td><%= dao.getWifi_name() %></td>
-			</tr>
-			<tr>
-				<td> 등록일자</td>
-				<td><%= dao.getReg_date() %></td>
-			</tr>
-				    	<tr align="center" bgcolor="white">
-		    	<td style = "text-align: center;" colspan="2">
-		    	<a href = "bookmark.jsp"> 돌아가기 </a>
-		    	<span> &nbsp;|&nbsp;</span>
-		    	<button type = "submit"> 삭제 </button>
-		    	<input type="hidden" name="id" value="<%= dao.getId() %>">
-		    	</td>
+    	    <thead>
+	    	<tr align="center" bgcolor="white">
+		    	<th>ID</th>
+		    	<th>북마크 이름</th>
+		    	<th>와이파이명</th>
+		    	<th>등록일자</th>
+		    	<th>비고</th>
 	    	</tr>
-    	</table>
-    </form>	
+	    </thead>
+	    <tbody>
+	    		<% for(bookmark_dao ele : list) {%>
+	    	
+	    	<tr>
+	    		<td><%= ele.getId() %></td>
+	    		<td><%= ele.getName() %></td>
+	    		<td><%= ele.getWifi_name() %></td>	
+	    		<td><%= ele.getReg_date() %></td>
+	    		<td><a href = "matched_bookmark_delete.jsp?id=<%=ele.getId() %>">삭제</a></td>
+
+	    	</tr>
+	    	<% } %>
+	    </tbody>
+	   </table>
 </body>
 </html>

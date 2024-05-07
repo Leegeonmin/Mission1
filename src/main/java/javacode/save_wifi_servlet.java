@@ -113,7 +113,7 @@ public class save_wifi_servlet extends HttpServlet {
             int size = result.size();         
             // JSP로 데이터 전달
             request.setAttribute("count", size);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("api_save_result.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("wifi_save_result.jsp");
             dispatcher.forward(request, response);
 		}
 	
